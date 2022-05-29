@@ -15,8 +15,9 @@ Including another URLconf
 """
 
 from django.urls import path
-from calculator.views import recipe
+from calculator.views import recipe, index
 
 urlpatterns = [
-    path('<dish>/', recipe)
+    path('', index, name = 'index'),
+    path('<dish>/', recipe, name = 'recipe')
 ]

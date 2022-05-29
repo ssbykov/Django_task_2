@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 DATA = {
     'omlet': {
@@ -19,8 +20,10 @@ DATA = {
     # можете добавить свои рецепты ;)
 }
 
+def index(request):
+    return redirect(reverse('recipe', kwargs={'dish': list(DATA.keys())[0]}))
 
-def recipe(request, dish):
+def recipe(request, dish=''):
     recipe = {}
     servings = request.GET.get('servings', 1)
     if DATA.get(dish):
